@@ -1,0 +1,58 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <!           Отображение мгновенных сообщений
+    <! -------------------------------------------------------->
+    {% for cat,msg in get_flashed_messages(True) %}
+        <font size="4">
+        <figure class="text-center">
+            <div class="alert {{cat}} " role="alert">{{msg}}</div>
+        </figure>
+        </font>
+    {% endfor %}
+
+    <center>
+
+
+    <!           Кнопка добавления пользователя
+    <! -------------------------------------------------------->
+    <a class="btn btn-primary btn-lg" href="{{url_for('add_user')}}" role="button" >Добавить пользователя</a>
+    <br><br>
+
+
+    <!           Таблица пользователей
+    <! -------------------------------------------------------->
+    <table class="table table-primary table-striped" style="width: 1300px;">
+        <thead class="table-dark">
+            <tr class = " fs-4">
+                <th scope="col" class='text-center'>Фото</th>
+                <th scope="col" class='text-center'>ФИО</th>
+                <th scope="col" class='text-center'>Логин</th>
+                <th scope="col" class='text-center'></th>
+                <th scope="col" class='text-center'></th>
+            </tr>
+        </thead>
+        <tbody class="fs-4">
+        {% for u in users %}
+        <tr>
+            <td class='text-center'>
+                <div style="overflow: hidden; width: 150px; height: 150px;">
+                    <div style="margin-top: 0px; margin-left: 0px;">
+                        <img src="/all_userava/{{ u.id }}" style="width: 90%;" alt ="Ошибка загрузки">
+                    </div>
+                </div>
+            </td>
+            <td class='text-center'>{{u.fio}}</td>
+            <td class='text-center'>{{u.login}}</td>
+            <td class='text-center'><a class="btn btn-primary btn-lg" href="/update_user/{{u.id}}" role="button" >Изменить</a></td>
+            <td class='text-center'><a class="btn btn-primary btn-lg" href="/delete_user/{{u.id}}" role="button" >Удалить</a></td>
+        </tr>
+        {% endfor -%}
+        </tbody>
+    </table>
+</center>
+{% endblock %}

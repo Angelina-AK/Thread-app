@@ -1,0 +1,43 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <!           Отображение мгновенных сообщений
+    <! -------------------------------------------------------->
+    {% for cat,msg in get_flashed_messages(True) %}
+        <font size="4">
+        <figure class="text-center">
+            <div class="alert {{cat}} " role="alert">{{msg}}</div>
+        </figure>
+        </font>
+    {% endfor %}
+    <!                Форма авторизации
+    <! -------------------------------------------------------->
+   <div class="mx-auto" style="width: 280px;">
+        <form action="" method="post">
+            <div class="w-25 p-3">
+                <div class="form-group">
+                    <label for="login1">Логин </label>
+                    <input type="text" name="login" class="form-control" id="login1" placeholder="Введите Логин" style="width: 250px;" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Пароль</label>
+                    <input type="password" name="psw" class="form-control" id="exampleInputPassword1" placeholder="Пароль" style="width: 250px;" required>
+                </div>
+                <br>
+                <div class="form-check">
+                    <input type="checkbox" name="remainme" class="form-check-input" id="exampleCheck1" >
+                    <label class="form-check-label" for="exampleCheck1" style="width: 250px;">Запомнить меня</label>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <hr align=center width="300px">
+                <p><a href="{{url_for('register')}}">Регистрация</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <font size="5">
+        <center>
+            <img src='{{ url}}' alt="Ошибка загрузки" style="width: 1400px;"/>
+            <a class="btn btn-primary btn-lg" href="{{url_for('thread_problem')}}" role="button" >Посмотреть данные о проблемах</a>
+            <br><br><br>
+        </center>
+    </font>
+{% endblock %}

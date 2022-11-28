@@ -1,0 +1,59 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <!           Отображение мгновенных сообщений
+    <! -------------------------------------------------------->
+    {% for cat,msg in get_flashed_messages(True) %}
+        <font size="4">
+        <figure class="text-center">
+            <div class="alert {{cat}} " role="alert">{{msg}}</div>
+        </figure>
+        </font>
+    {% endfor %}
+
+
+    <!                  Форма изменения записи
+    <! -------------------------------------------------------->
+
+    <!      Фото профиля  >
+    <div class="mx-auto" style="width: 300px;">
+        <img src="/all_userava/{{id}}" style="height:240px;" alt="Ошибка загрузки" class="round">
+        <br><br><br>
+        <hr align=center width="350px">
+        <form action="/upload_for_user/{{id}}" method="POST" enctype="multipart/form-data" >
+            <p><input class="btn btn-light" type="file" name="file">
+            <p><input class="btn btn-success" type="submit" value="Загрузить фото">
+        </form>
+        <hr align=center width="350px">
+    </div>
+
+    <!      Текстовая информация  >
+    <div class="mx-auto" style="width: 320px;">
+        <form action="/update_user/{{id}}" method="post" class="form-contact">
+            <div class="w-25 p-3">
+                <div class="form-group">
+                    <label for="name1">ФИО </label>
+                    <input type="text" name="fio" class="form-control" id="name1" placeholder="Введите фамилию, имя, отчетсво" value="{{fio}}" style="width: 280px;" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="login1">Логин </label>
+                    <input type="text" name="login" class="form-control" id="login1" placeholder="Введите логин" value="{{login}}" style="width: 280px;" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Пароль</label>
+                    <input type="password" name="psw" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль" style="width: 280px;" required>
+                </div>
+                <br><br>
+                <button type="submit" class="btn btn-primary" style="width: 280px;">Обновить запись о пользователе</button>
+                <br><br>
+                <a class="btn btn-primary " href="{{url_for('all_profiles')}}" role="button" style="width: 280px;">Назад к списку профилей</a>
+                </div>
+        </form>
+    </div>
+{% endblock %}

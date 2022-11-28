@@ -1,0 +1,15 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <div class="mx-auto" style="width: 900px;">
+       <div class="alert alert-light" role="alert" style="width: 1600px;">
+           <font size="5" color="black">
+               <pre>{{text}}</pre>
+           </font>
+       </div>
+    </div>
+{% endblock %}

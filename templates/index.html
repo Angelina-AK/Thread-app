@@ -1,0 +1,37 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <!           Отображение мгновенных сообщений
+    <! -------------------------------------------------------->
+    {% for cat,msg in get_flashed_messages(True) %}
+        <font size="4">
+        <figure class="text-center">
+            <div class="alert {{cat}} " role="alert">{{msg}}</div>
+        </figure>
+        </font>
+    {% endfor %}
+    <!           Содержимое главной страницы
+    <! -------------------------------------------------------->
+    <font size="5">
+        <div class="mx-auto" style="width: 440px;">
+            <div class="alert alert-light" role="alert" style="width: 500px;">
+                <p> Данный сайт направлен на работу с потоками данных для обработки (CRUD)
+                <br><br>
+                <footer class="blockquote-footer"> Для просмотра содержимого потоков и справочников, пожалуйста, авторизуйтесь.</footer>
+
+            </div>
+        </div>
+
+        <center>
+            <a class="btn btn-primary btn-lg" href="{{url_for('get_thread')}}" role="button" >Считать данные и добавить запись о потоке</a>
+            <br><br>
+            <img src="{{ url_for('static', filename='images/Схема_БД.png')}}" alt="Ошибка загрузки">
+        </center>
+        <br><br>
+
+    </font>
+{% endblock %}

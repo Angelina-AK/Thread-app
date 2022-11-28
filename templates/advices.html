@@ -1,0 +1,33 @@
+<! -------------------------------------------------------->
+<!        На основе base.html, расширяет блок контента
+<! -------------------------------------------------------->
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <!           Таблица рекомендаций
+    <! -------------------------------------------------------->
+<center>
+    <br><br>
+    <table class="table table-striped" style="width: 1600px;">
+        <thead class="table-primary" >
+            <tr class = " fs-4" >
+                <th scope="col" class='text-center'>Тип данных</th>
+                <th scope="col" class='text-center'>Диапазон значений</th>
+                <th scope="col" class='text-center'>Проблема</th>
+                <th scope="col" class='text-center'>Совет</th>
+            </tr>
+        </thead>
+        <tbody class="fs-4">
+        {% for k in content %}
+        <tr>
+            <td class='text-center'>{{k[2].Type_of_data}}</td>
+            <td class='text-center'><pre> От {{k[2].Min}} до {{k[2].Max}} </pre></td>
+            <td class='text-center'>{{k[1].Name}}</td>
+            <td class='text-center'>{{k[0].Content}}</td>
+        </tr>
+        {% endfor -%}
+        </tbody>
+    </table>
+</center>
+{% endblock %}

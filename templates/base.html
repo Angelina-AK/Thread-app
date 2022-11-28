@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<! -------------------------------------------------------->
+<!          Заголовок сайта (передаетя шаблону) >
+<! -------------------------------------------------------->
+<head>
+	<!          	Требуемые параметры для Boostrap
+	<! -------------------------------------------------------->
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% block title -%}
+    {% if title %}
+        <title> {{title}}</title>
+    {% endif %}
+    {% endblock -%}
+	<!          	Подключение Boostrap
+	<! -------------------------------------------------------->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<style>
+   		.round {
+    	border-radius: 100px; /* Радиус скругления */
+    	border: 3px solid light-blue; /* Параметры рамки */
+    	box-shadow: 0 0 7px #666; /* Параметры тени */
+   		}
+  	</style>
+
+</head>
+<body>
+
+<! -------------------------------------------------------->
+<!          Содержимое сайта (блок контента)
+<! -------------------------------------------------------->
+{% block content -%}
+	{%- block mainmenu -%}
+<!          			Меню сайта
+<! -------------------------------------------------------->
+	<font size="5">
+
+	<nav class="navbar navbar-expand-lg navbar-light justify-content-md-center" style="background-color: E6E6FA;">
+		  <div  class="nav navbar-nav" >
+			  <a class="nav-item nav-link" href="/" ><pre> Главная |</pre></a>
+			  <a class="nav-item nav-link" href="/thread"><pre> Потоки данных |</pre></a>
+			  <a class="nav-item nav-link" href="/ranges"><pre> Справочник диапазонов значений |</pre></a>
+			  <a class="nav-item nav-link" href="/advices"><pre> Справочник c рекомендациями |</pre></a>
+			  <a class="nav-item nav-link" href="/login"><pre> Авторизация |</pre></a>
+			  <a class="nav-item nav-link" href="/profile"><pre> Профиль |</pre></a>
+			  <a class="nav-item nav-link" href="/all_profiles"><pre> Пользователи </pre></a>
+		  </div>
+	</nav>
+
+	</font>
+
+	<center><!hr align=center width="1500px" ></center>
+
+	<br>
+
+	{% endblock mainmenu -%}
+	<!div>
+		<!          	Заголовок h1 страницы
+		<! -------------------------------------------------------->
+		<center>
+		{% if title -%}
+			<h1> {{title}}</h1>
+		{% endif %}
+		</center>
+{% endblock -%}
+	<!/div>
+
+
+</body>
+</html>
